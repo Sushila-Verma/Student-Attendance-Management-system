@@ -1,0 +1,16 @@
+{% block contact %}
+{% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'edit.css' %}">
+    </head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <h2>Edit Attendance</h2>
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" value="{{ attendance.status }}" required><br>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+{%endblock%}

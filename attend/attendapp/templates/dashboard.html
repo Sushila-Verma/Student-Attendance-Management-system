@@ -1,0 +1,31 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'style1.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="left_section">
+            <div class="nav">
+            <a href="{% url 'student' %}">Student Data</a></div>
+            <div class="nav">
+            <a href="{% url 'attendance' %}">Attendance Data</a></div>
+            <div class="nav">
+            <a href="{% url 'display' %}">Display Data</a></div>
+            <div class="nav">
+            <a href="{% url 'register' %}">Registration</a></div>
+        </div>
+        <div class="right_section">
+            <h1>Dashboard</h1></div>
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>

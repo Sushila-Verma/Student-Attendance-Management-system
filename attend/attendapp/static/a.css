@@ -1,0 +1,100 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: rgb(199, 246, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('C:\Users\moon\Desktop\project\images\moon1.jpg');
+    font-family: Arial, sans-serif;
+}
+
+.header-link {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.header-link a {
+    color: #3870ac;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.header-link a:hover {
+    text-decoration: underline;
+}
+
+.form-container {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 200%;
+}
+
+h1 {
+    color: rgb(4, 62, 62);
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-field:last-child {
+    margin-right: 0;
+}
+
+.form-field.full-width {
+    margin-top: 10px;
+}
+.form-f {
+    padding: 10px;
+    width: 50%;
+    height: 10px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #3870ac;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #9a6c6c;
+    border-radius: 5px;
+    font-size: 16px;
+}

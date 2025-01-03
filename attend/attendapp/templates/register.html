@@ -1,0 +1,59 @@
+
+{% block contact %}
+{% load static %}
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <h3 style="text-align:left;"><a href="{% url 'dashboard' %}">Back</a></h1>
+    <link rel="stylesheet" href="{% static 'a.css' %}">
+</head>
+<body>
+    
+    <div class="form-container">
+        <h1>Registration</h1>
+        <form action="{% url 'register' %}" method='POST'>
+            {% csrf_token %}
+            <div class="form-row"> 
+                <div class="form-field">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+                <div class="form-field">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="password2" id="password2" required>
+                </div>
+            </div>
+            
+            
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="contact">Contact</label>
+                    <input type="text" name="contact" id="contact" required>
+                </div>
+                <div class="form-field">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" required>
+                </div>
+            </div>
+           
+            
+
+            <div class="form-field full-width">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+{%endblock%}

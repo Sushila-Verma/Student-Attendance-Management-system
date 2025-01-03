@@ -1,0 +1,55 @@
+{% block contact %}
+{% load static %}
+ <head>
+        <meta charset="UTF-8">
+    <title>View Records</title>
+    <h3 style="text-align:left;"><a href="{% url 'dashboard' %}">Back</a></h3>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <h3><a href="{% url 'student' %}">Add student</a></h3>
+    
+</head>
+<body>
+    <h1> Students Record </h1>
+    <table border='1'>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Gender</th>
+                <th>Date</th>
+                <th>Today_Status</th>
+                <th>Actions</th></tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{student.id}}</td>
+                    <td>{{student.student_name}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.contact}}</td>
+                    <td>{{student.gender}}</td>
+                    {% for attend in attendance %}
+                    {% if attend.student.id == student.id %}
+                    <td>{{ attend.date }}</td>
+                    <td>{{ attend.status }}</td>
+                    <td><a href="{% url 'edit_attendance' attend.id %}">Edit</a></td>
+                    {% endif %}
+                {% endfor %}
+                {% if not attendance %}
+                <td colspan="2">No attendance recorded today</td>
+                {% endif %}
+                
+            </tr>
+        {%endfor%}
+     </tbody>
+    </table>
+    </body>
+{%endblock%}
+
+
+
+
+                
+        

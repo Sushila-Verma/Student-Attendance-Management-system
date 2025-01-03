@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body, html {
+            height: 100vh;
+            width:100%;
+            margin: 0;
+            display: flex;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .left-section {
+            width: 20%;
+            background-color: navy;
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+        
+        .left-section .item {
+            background-color: royalblue;
+            font-size:30px;
+            color:white;
+            margin-bottom: 10px;
+            padding: 25px;
+            }
+        .left-section .item a {
+            color: white; /* Set text color to white */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold text */
+            font-size: 20px; /* Increase font size */
+            display: block; /* Make the link cover the full area of the item */
+        }
+        .left-section .item a:hover {
+            background-color: dodgerblue; /* Change background on hover */
+        }
+        .right-section {
+            width: 80%;
+            background-color: white;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+ 
+        }
+        .right-section h1 {
+            font-size: 40px;
+            background-color:navy;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align:center;
+            margin-top:0;
+        }
+        .row {
+           
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .chart-container {margin-left:20px;
+            width: 90%;
+            
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="item">Dashboard</a></div>
+            <div class="item"><a href="{% url 'login' %}">Teacher's Login</a></div>
+            <div class="item"><a href="{% url 'register' %}">Teacher's Registration</a></div>
+            <div class="item"><a href="{% url 'student' %}">Add Students</a></div>
+            <div class="item"><a href="{% url 'attendance' %}">Mark_Attendance</a></div>
+            <div class="item"><a href="{% url 'display' %}">Student's Today Data</a></div>
+            <div class="item"><a href="{% url 'view_students' %}">Students Detail</a></div>
+            <div class="item"><a href="{% url 'view_attendance' %}">Student Attendance Record</a></div>
+        </div>
+        <div class="right-section">
+            <h1>STUDENT  ATTENDANCE  PORTAL</h1>
+            <div class= "row" style="backgroundColor:blue;"><div><h2>Percentage of Students:</h1></div>
+            <div class="chart-container" style="width: 100%; height: 250px;"> <!-- Adjust the width and height here -->
+                <canvas id="attendanceChart"></canvas></div></div><br>
+            <div class="table-container">
+                <h2>Attendance Data</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            {% for date in dates %}
+                                <th>{{ date }}</th>
+                            {% endfor %}
+                            <th>Total Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student_data in attend_data %}
+                            <tr>
+                                <td>{{ student_data.id }}</td>
+                                <td>{{ student_data.name }}</td>
+                                {% for status in student_data.attendance %}
+                                    <td>{{ status }}</td>
+                                {% endfor %}
+                                <td>{{ student_data.percentage }}%</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: {{ student_names|safe }},
+                datasets: [{
+                    label: 'Attendance Percentage',
+                    data: {{ attendance_percentages|safe }},
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

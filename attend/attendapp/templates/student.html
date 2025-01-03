@@ -1,0 +1,48 @@
+{% block contact %}
+{% load static %}
+<head>
+    <title>Add_Student</title>
+    <link rel="stylesheet" href="{% static 'stu.css' %}"> 
+    <h3 style="text-align:left;"><a href="{% url 'dashboard' %}">Back</a></h3>
+    
+</head>
+<body>
+    
+    <div class ="form_container">
+        <H1>Add Students</H1>
+        <form method="post"  action="{% url 'student' %}">
+            {% csrf_token %}
+            <div class="field">
+                <Label for='id'>Student ID : </label>
+                <input type='text' id='id'  name='id' required>
+            </div>
+
+            
+            <div class="field">
+                <Label for='student_name'>Student Name :</label>
+                <input type='text' placeholder="Enter Student Name"  id='student_name' name='student_name' required>
+            </div>
+            <div class="field">
+                <Label for='email'>Email :</label>
+                <input type='text' id='email'  name='email' required>
+            </div>
+            <div class="field">
+                <Label for='contact'>Contact :</label>
+                <input type='text' id='contact'  name='contact' required>
+            </div>
+            <div class="field">
+                <Label for='gender'>Gender :</label>
+                <input type='gender' id='gender'  name='gender' required>
+            </div>
+           
+            <div class="form-field full-width">
+                <button type="submit">Save</button>
+            </div>
+            
+        </form>
+    </div>
+    
+</body>
+{%endblock%}
+            
+

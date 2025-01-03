@@ -1,0 +1,37 @@
+{% block contact %}
+{% load static %}
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'log.css' %}"> 
+    </head>
+<body>
+    
+    <div class ="form_c">
+        <H1>LOGIN</H1>
+        <form  method="post" >
+            {% csrf_token %}
+            <div class="field">
+                <Label for='email'>Email</label>
+                <input type='text' placeholder="Enter Useremail" id='email'  name='email' required>
+            </div>
+
+            
+            <div class="field">
+                <Label for='password'>Password</label>
+                <input type='password' placeholder="Enter Password"  id='password' name='password' required>
+            </div>
+           
+            <div class="form-field full-width">
+                <button type="submit">Login</button>
+            </div>
+            <div><p><a href="{% url 'register'%}">Create an account</a></p></div>
+        </form>
+    </div>
+    {% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+</body>
+{%endblock%}
+            
+

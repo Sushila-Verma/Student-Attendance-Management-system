@@ -1,0 +1,48 @@
+{% block contact %}
+{% load static %}
+<head>
+    <title>Mark Attendance</title>
+    <h3 style="text-align:left;"><a href="{% url 'dashboard' %}">Back</a></h3>
+    <link rel="stylesheet" href="{% static 'stu.css' %}">
+</head>
+<body>
+    <div class="form_container">
+        <h1>Mark Attendance</h1>
+        <form method="post", action="{% url 'attendance' %}">
+             {% csrf_token %}
+            <div class="field">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="{{ date }}">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.student_name }}</td>
+                        <td>
+                            <label>
+                                <input type="radio" name="status_{{ student.id }}" value="Present" required> Present
+                            </label>
+                            <label>
+                                <input type="radio" name="status_{{ student.id }}" value="Absent" required> Absent
+                            </label>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="form-field full-width">
+                <button type="submit">Save Attendance</button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock%}
